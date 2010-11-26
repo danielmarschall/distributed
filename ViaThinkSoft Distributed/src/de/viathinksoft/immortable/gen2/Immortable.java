@@ -114,7 +114,24 @@ public class Immortable {
 			// Should never happen
 			return null;
 		}
-
+	}
+	
+	public static boolean isImmortable(BigInteger num) {
+		// Alternativ: n²%10^m == n%10^m
+		return num.pow(2).toString().endsWith(num.toString());
+	}
+	
+	public static String findNextImmortable(String num) {
+		if (!isImmortable(new BigInteger(num))) {
+			return null;
+		}
+		for (int i=1; i<=9; i++) {
+			String s = i+num;
+			if (isImmortable(new BigInteger(s))) {
+				return s;
+			}
+		}
+		return "0"+num;
 	}
 
 	private Immortable() {
