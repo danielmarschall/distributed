@@ -48,7 +48,7 @@ public class Gen3Test {
 			if (MathUtils2.divRem(u, new BigInteger(STEPS)).getRemainder() == BigInteger.ZERO) {
 				String s = new StringBuffer(curIM).reverse().toString();
 
-				filename = "bak\\gen3_m5_" + u.toString() + ".txt";
+				filename = "bak/gen3_m5_" + u.toString() + ".txt";
 				BufferedWriter f = new BufferedWriter(new FileWriter(filename));
 				f.write(s);
 				f.close();
