@@ -4,13 +4,19 @@ import java.math.BigInteger;
 
 public class MathUtils2 {
 	
-	public static BigInteger length(BigInteger x) {
+	public static BigInteger length(BigInteger x) throws Exception {
 		// TODO: größer als MAX_INTEGER erlauben!
-		return new BigInteger(""+x.toString().length());
+		BigInteger z = new BigInteger(""+x.toString().length());
+		
+		if (z.signum() == -1) {
+			throw new Exception("Integer overflow! (BigInteger-Length)");
+		}
+		
+		return z;
 	}
 	
 	public static BigInteger pow(BigInteger base, BigInteger exponent) {
-		if (exponent.compareTo(BigInteger.ZERO) < 0) {
+		if (exponent.signum() == -1) {
 			throw new ArithmeticException("Negative exponent");
 		}
 
@@ -41,7 +47,7 @@ public class MathUtils2 {
 	public static DivisionAndRemainderResult divRem(BigInteger a, BigInteger b) {
 		// if (b==0) {
 		// -> divideAndRemainder() throws ArithmeticException when b==0
-		if ((b.compareTo(BigInteger.ZERO)) == 0) {
+		if (b.signum() == 0) {
 			return new DivisionAndRemainderResult(BigInteger.ZERO,
 					BigInteger.ZERO);
 		}
@@ -58,12 +64,12 @@ public class MathUtils2 {
 	 * @see http://www.arndt-bruenner.de/mathe/scripts/chineRestsatz.js
 	 */
 	private static BigInteger[] extGGT(BigInteger a, BigInteger b) {
-		if (b.compareTo(BigInteger.ZERO) == 0) {
+		if (b.signum() == 0) {
 			return new BigInteger[] { BigInteger.ONE, BigInteger.ZERO };
 		}
 
 		BigInteger rem = divRem(a, b).getRemainder();
-		if (rem.compareTo(BigInteger.ZERO) == 0) {
+		if (rem.signum() == 0) {
 			return new BigInteger[] { BigInteger.ZERO, BigInteger.ONE };
 		}
 
@@ -86,12 +92,12 @@ public class MathUtils2 {
 		BigInteger aa = new BigInteger("1");
 		BigInteger bb = new BigInteger("1");
 
-		if (a.compareTo(BigInteger.ZERO) < 0) {
+		if (a.signum() == -1) {
 			aa = new BigInteger("-1");
 			a = a.negate();
 		}
 
-		if (b.compareTo(BigInteger.ZERO) < 0) {
+		if (b.signum() == -1) {
 			bb = new BigInteger("-1");
 			b = b.negate();
 		}
@@ -119,19 +125,19 @@ public class MathUtils2 {
 		
 		// Frage: Ist es notwendig, dass wir divRem() verwenden, das von a%0==0 ausgeht?
 		
-		if (a.compareTo(BigInteger.ZERO) < 0) {
+		if (a.signum() == -1) {
 			a = a.negate();
 		}
 		
-		if (b.compareTo(BigInteger.ZERO) < 0) {
+		if (b.signum() == -1) {
 			b = b.negate();
 		}
 		
-		if (n.compareTo(BigInteger.ZERO) < 0) {
+		if (n.signum() == -1) {
 			n = n.negate();
 		}
 		
-		if (m.compareTo(BigInteger.ZERO) < 0) {
+		if (m.signum() == -1) {
 			m = m.negate();
 		}
 		
@@ -157,7 +163,7 @@ public class MathUtils2 {
 				.getRemainder();
 		x = a.subtract(y.multiply(n).multiply(a.subtract(b).divide(d)));
 
-		while (x.compareTo(BigInteger.ZERO) < 0) {
+		while (x.signum() == -1) {
 			x = x.add(N);
 		}
 

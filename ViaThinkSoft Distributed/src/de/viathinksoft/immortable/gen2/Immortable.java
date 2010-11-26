@@ -85,10 +85,10 @@ public class Immortable {
 	 * @param u
 	 *            Length of number (because of possible leading zeros)
 	 * @return Number in opposide base.
-	 * @throws InvalidLengthException
+	 * @throws Exception 
 	 */
 	public static BigInteger toggleBase(BigInteger cur, BigInteger u)
-			throws InvalidLengthException {
+			throws Exception {
 		// Converts M6(u) <-> M5(u)
 		// M6(u) = 1 + 10^u - M5(u)
 		// M5(u) = 1 + 10^u - M6(u)
@@ -106,8 +106,9 @@ public class Immortable {
 	 * 
 	 * @param cur
 	 * @return
+	 * @throws Exception 
 	 */
-	public static BigInteger toggleBase(BigInteger cur) {
+	public static BigInteger toggleBase(BigInteger cur) throws Exception {
 		try {
 			return toggleBase(cur, MathUtils2.length(cur));
 		} catch (InvalidLengthException e) {
