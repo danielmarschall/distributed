@@ -1,4 +1,4 @@
-package de.viathinksoft.distributed.apps.immortal.iterator.sequential;
+package de.viathinksoft.distributed.apps.immortal.gen1.iterator.sequential;
 
 import static org.junit.Assert.*;
 
