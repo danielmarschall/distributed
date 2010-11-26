@@ -1,4 +1,4 @@
-package de.viathinksoft.distributed.apps.immortal.iterator.sequential;
+package de.viathinksoft.distributed.apps.immortal.gen1.iterator.sequential;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,7 +9,7 @@ import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-import de.viathinksoft.distributed.apps.immortal.exception.FileContentsBadException;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.FileContentsBadException;
 import de.viathinksoft.utils.security.MD5;
 
 public class ImmortalSequenceList extends ArrayList<BigInteger> {

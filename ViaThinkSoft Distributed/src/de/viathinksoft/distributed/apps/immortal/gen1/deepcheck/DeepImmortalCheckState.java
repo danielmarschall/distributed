@@ -1,4 +1,4 @@
-package de.viathinksoft.distributed.apps.immortal.deepcheck;
+package de.viathinksoft.distributed.apps.immortal.gen1.deepcheck;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 
-import de.viathinksoft.distributed.apps.immortal.exception.FileContentsBadException;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.FileContentsBadException;
 import de.viathinksoft.utils.security.MD5;
 
 public class DeepImmortalCheckState implements Serializable {

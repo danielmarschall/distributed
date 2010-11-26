@@ -6,7 +6,7 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
-import de.viathinksoft.distributed.apps.immortal.iterator.sequential.SequentialIterator;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.sequential.SequentialIterator;
 
 public class SequentialIteratorTest {
 

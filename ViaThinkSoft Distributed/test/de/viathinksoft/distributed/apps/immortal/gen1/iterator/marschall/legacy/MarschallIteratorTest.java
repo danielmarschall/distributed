@@ -1,4 +1,4 @@
-package de.viathinksoft.distributed.apps.immortal.iterator.marschall.legacy;
+package de.viathinksoft.distributed.apps.immortal.gen1.iterator.marschall.legacy;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,8 +6,8 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
-import de.viathinksoft.distributed.apps.immortal.exception.InitialNumberNotImmortableException;
-import de.viathinksoft.distributed.apps.immortal.iterator.marschall.legacy.MarschallIterator;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.InitialNumberNotImmortableException;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.marschall.legacy.MarschallIterator;
 
 public class MarschallIteratorTest {
 	

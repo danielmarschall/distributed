@@ -1,9 +1,9 @@
-package de.viathinksoft.distributed.apps.immortal.iterator;
+package de.viathinksoft.distributed.apps.immortal.gen1.iterator;
 
 import java.math.BigInteger;
 
-import de.viathinksoft.distributed.apps.immortal.deepcheck.DeepImmortalCheckIterator;
-import de.viathinksoft.distributed.apps.immortal.deepcheck.DeepImmortalCheckState;
+import de.viathinksoft.distributed.apps.immortal.gen1.deepcheck.DeepImmortalCheckIterator;
+import de.viathinksoft.distributed.apps.immortal.gen1.deepcheck.DeepImmortalCheckState;
 
 
 public class QuickImmortableCheck {

@@ -1,4 +1,4 @@
-package de.viathinksoft.distributed.apps.immortal.exception;
+package de.viathinksoft.distributed.apps.immortal.gen1.exception;
 
 public class FileContentsBadException extends Exception {
 

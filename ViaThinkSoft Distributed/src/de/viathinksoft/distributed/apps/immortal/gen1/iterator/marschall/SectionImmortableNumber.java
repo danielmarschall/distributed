@@ -1,4 +1,4 @@
-package de.viathinksoft.distributed.apps.immortal.iterator.marschall;
+package de.viathinksoft.distributed.apps.immortal.gen1.iterator.marschall;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,10 +9,10 @@ import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-import de.viathinksoft.distributed.apps.immortal.exception.FileContentsBadException;
-import de.viathinksoft.distributed.apps.immortal.exception.InitialNumberIsOneException;
-import de.viathinksoft.distributed.apps.immortal.exception.InitialNumberNotImmortableException;
-import de.viathinksoft.distributed.apps.immortal.iterator.QuickImmortableCheck;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.FileContentsBadException;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.InitialNumberIsOneException;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.InitialNumberNotImmortableException;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.QuickImmortableCheck;
 import de.viathinksoft.utils.security.MD5;
 
 //TODO: Gewisse zahl anwählen

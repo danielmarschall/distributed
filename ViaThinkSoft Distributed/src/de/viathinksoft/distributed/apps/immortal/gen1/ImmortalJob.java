@@ -1,17 +1,17 @@
-package de.viathinksoft.distributed.apps.immortal;
+package de.viathinksoft.distributed.apps.immortal.gen1;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
-import de.viathinksoft.distributed.apps.immortal.deepcheck.DeepImmortalCheckIterator;
-import de.viathinksoft.distributed.apps.immortal.deepcheck.DeepImmortalCheckState;
-import de.viathinksoft.distributed.apps.immortal.exception.FileContentsBadException;
-import de.viathinksoft.distributed.apps.immortal.exception.InitialNumberIsOneException;
-import de.viathinksoft.distributed.apps.immortal.exception.InitialNumberNotImmortableException;
-import de.viathinksoft.distributed.apps.immortal.iterator.marschall.MarschallSectionIterator;
-import de.viathinksoft.distributed.apps.immortal.iterator.marschall.SectionImmortableNumber;
-import de.viathinksoft.distributed.apps.immortal.iterator.sequential.ImmortalSequenceList;
-import de.viathinksoft.distributed.apps.immortal.iterator.sequential.SequentialIterator;
+import de.viathinksoft.distributed.apps.immortal.gen1.deepcheck.DeepImmortalCheckIterator;
+import de.viathinksoft.distributed.apps.immortal.gen1.deepcheck.DeepImmortalCheckState;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.FileContentsBadException;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.InitialNumberIsOneException;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.InitialNumberNotImmortableException;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.marschall.MarschallSectionIterator;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.marschall.SectionImmortableNumber;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.sequential.ImmortalSequenceList;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.sequential.SequentialIterator;
 
 public class ImmortalJob {
 	

@@ -1,9 +1,9 @@
-package de.viathinksoft.distributed.apps.immortal.iterator.sequential;
+package de.viathinksoft.distributed.apps.immortal.gen1.iterator.sequential;
 
 import java.math.BigInteger;
 import java.util.Iterator;
 
-import de.viathinksoft.distributed.apps.immortal.iterator.QuickImmortableCheck;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.QuickImmortableCheck;
 
 //TODO: Iterable aufspalten?
 

@@ -1,12 +1,12 @@
-package de.viathinksoft.distributed.apps.immortal.iterator.marschall;
+package de.viathinksoft.distributed.apps.immortal.gen1.iterator.marschall;
 
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import de.viathinksoft.distributed.apps.immortal.exception.InitialNumberIsOneException;
-import de.viathinksoft.distributed.apps.immortal.exception.InitialNumberNotImmortableException;
-import de.viathinksoft.distributed.apps.immortal.iterator.marschall.SectionImmortableNumber;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.InitialNumberIsOneException;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.InitialNumberNotImmortableException;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.marschall.SectionImmortableNumber;
 
 public class SectionImmortableNumberTest {
 	

@@ -1,16 +1,16 @@
-package de.viathinksoft.distributed.apps.immortal;
+package de.viathinksoft.distributed.apps.immortal.gen1;
 
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 
-import de.viathinksoft.distributed.apps.immortal.deepcheck.DeepImmortalCheckBootStrap;
-import de.viathinksoft.distributed.apps.immortal.exception.FileContentsBadException;
-import de.viathinksoft.distributed.apps.immortal.exception.InitialNumberIsOneException;
-import de.viathinksoft.distributed.apps.immortal.exception.InitialNumberNotImmortableException;
-import de.viathinksoft.distributed.apps.immortal.iterator.marschall.SectionImmortableBootStrap;
-import de.viathinksoft.distributed.apps.immortal.iterator.sequential.ImmortalSequenceList;
-import de.viathinksoft.distributed.apps.immortal.iterator.sequential.ImmortalSequenceListBootStrap;
+import de.viathinksoft.distributed.apps.immortal.gen1.deepcheck.DeepImmortalCheckBootStrap;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.FileContentsBadException;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.InitialNumberIsOneException;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.InitialNumberNotImmortableException;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.marschall.SectionImmortableBootStrap;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.sequential.ImmortalSequenceList;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.sequential.ImmortalSequenceListBootStrap;
 
 @SuppressWarnings("unused")
 public class Test {

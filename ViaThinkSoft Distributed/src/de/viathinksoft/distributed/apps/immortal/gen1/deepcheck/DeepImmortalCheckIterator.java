@@ -1,4 +1,4 @@
-package de.viathinksoft.distributed.apps.immortal.deepcheck;
+package de.viathinksoft.distributed.apps.immortal.gen1.deepcheck;
 
 import java.math.BigInteger;
 import java.util.Iterator;

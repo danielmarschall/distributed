@@ -1,10 +1,10 @@
-package de.viathinksoft.distributed.apps.immortal.iterator.marschall.legacy;
+package de.viathinksoft.distributed.apps.immortal.gen1.iterator.marschall.legacy;
 
 import java.math.BigInteger;
 import java.util.Iterator;
 
-import de.viathinksoft.distributed.apps.immortal.exception.InitialNumberNotImmortableException;
-import de.viathinksoft.distributed.apps.immortal.iterator.QuickImmortableCheck;
+import de.viathinksoft.distributed.apps.immortal.gen1.exception.InitialNumberNotImmortableException;
+import de.viathinksoft.distributed.apps.immortal.gen1.iterator.QuickImmortableCheck;
 
 //TODO: Iterable aufspalten?
 
