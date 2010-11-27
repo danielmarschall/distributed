@@ -38,8 +38,7 @@ public class MathUtils2Test {
 	 */
 
 	@Test
-	public void chineseRemainderTest() throws CRTNotSolveableException,
-			RemainderNotSmallerThanModulusException {
+	public void chineseRemainderTest() throws CRTException {
 		BigInteger x;
 		
 		// 45 2 65 3 -> Rest muss kleiner sein als Modul

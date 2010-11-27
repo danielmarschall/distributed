@@ -121,7 +121,7 @@ public class MathUtils2 {
 	 * @see http://de.wikipedia.org/wiki/Chinesischer_Restsatz#Direktes_L.C3.B6sen_von_simultanen_Kongruenzen_ganzer_Zahlen 
 	 */
 	public static BigInteger chineseRemainder(BigInteger a, BigInteger n,
-			BigInteger b, BigInteger m) throws CRTNotSolveableException, RemainderNotSmallerThanModulusException {
+			BigInteger b, BigInteger m) throws CRTException {
 		
 		// Frage: Ist es notwendig, dass wir divRem() verwenden, das von a%0==0 ausgeht?
 		
