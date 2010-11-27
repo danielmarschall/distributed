@@ -20,6 +20,7 @@ public class TestRndPi {
 		// DigitIterator di = new EDigits();
 		
 		TranszedentRnd r = new TranszedentRnd(di, seed);
+		// TranszedentIterator r = new TranszedentIterator(di);
 		
 		int count_0 = 0;
 		int count_1 = 0;
