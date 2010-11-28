@@ -3,7 +3,6 @@ package de.viathinksoft.immortable.gen2;
 import java.math.BigInteger;
 
 import de.viathinksoft.immortable.gen2.math.CoPrimeExpectedException;
-import de.viathinksoft.immortable.gen2.math.ImmortableBase;
 import de.viathinksoft.immortable.gen2.math.MathUtils;
 import de.viathinksoft.immortable.gen2.math.MathUtils2;
 

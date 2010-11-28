@@ -1,4 +1,4 @@
-package de.viathinksoft.immortable.gen2.math;
+package de.viathinksoft.immortable.gen2;
 
 public enum ImmortableBase {
 	

@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 
-import de.viathinksoft.immortable.gen2.math.ImmortableBase;
 
 public class ImmortableWriter {
 

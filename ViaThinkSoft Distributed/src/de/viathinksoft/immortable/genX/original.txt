@@ -1,0 +1,23 @@
+/* Berechnet a[0]..a[n-1], also bis einschliesslich M_5(n) .                                    */
+/* Es wird vorausgesetzt, dass das Feld a auf einen genuegend grossen Platz fuer n Bytes zeigt! */
+void BerechneUnsterblich (unsigned char *a, int n)
+{
+  int r,s,u,m,k;
+  if (n <= 0) return;
+  a[0] = 5;
+  if (n <= 1) return;
+  a[1] = 2;
+  r = 2;
+  u = 1;
+  while (u < n-1)
+  {
+    r = (r-a[u])/10 + a[u];
+    s = 0;
+    for (m = 1, k = u; m < k; m++,k--) s += a[m]*a[k];
+    r += 2*s;
+    if (m == k) r += a[m]*a[m];
+    a[++u] = r % 10;
+  }
+}
+
+"5 Mal editiert"
