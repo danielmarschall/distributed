@@ -21,7 +21,7 @@ import java.util.Vector;
 public class ImmortableNumberSearch {
 
 	private static final String SIGNATURE = "Immortable Number Report File Version 2.0";
-	private static final String SIGNATURE_MINOR = "Iterator GenX Java (backup, selftest, int32) r16";
+	private static final String SIGNATURE_MINOR = "Iterator GenX Java (backup, selftest, int32) r17";
 	private static final String END_SIG = "END OF REPORT";
 	private static final int SOFTBREAK = 76;
 
@@ -100,7 +100,7 @@ public class ImmortableNumberSearch {
 
 				f.readLine(); // Minor. signature
 				f.readLine(); // ""
-				
+
 				f.readLine(); // "(Starting time)"
 				creation_time = f.readLine();
 				f.readLine(); // ""
@@ -113,7 +113,7 @@ public class ImmortableNumberSearch {
 				s = f.readLine();
 				u = Integer.parseInt(s);
 				f.readLine(); // ""
-				
+
 				f.readLine(); // "(r)"
 				s = f.readLine();
 				r = Integer.parseInt(s); // FUTURE: (1) Multi-Line-Support?
@@ -132,7 +132,7 @@ public class ImmortableNumberSearch {
 					throw new LoadException("Corrupt: Not immortable!");
 				}
 
-				if (u+1 != a.size()) {
+				if (u + 1 != a.size()) {
 					throw new LoadException(
 							"Corrupt: Formal and actual length mismatch!");
 				}
@@ -152,14 +152,13 @@ public class ImmortableNumberSearch {
 	private void save(boolean integrityTest) throws SaveException {
 		if (integrityTest) {
 			if (!integryTest()) {
-				throw new SaveException(
-						"Integrity test failed. Will not save.");
+				throw new SaveException("Integrity test failed. Will not save.");
 			}
 		}
 
 		String timestamp = DateUtils.now("EEE, d MMM yyyy HH:mm:ss Z");
 		String timestamp_filename = DateUtils.now("dd-MM-yyyy_HH-mm-ss");
-		
+
 		try {
 			BufferedWriter f = new BufferedWriter(new FileWriter(filename));
 
@@ -209,8 +208,8 @@ public class ImmortableNumberSearch {
 		// Make backup
 
 		new File(backupDir).mkdir();
-		String bak_filename = backupDir + "/immortal_" + timestamp_filename + "_" + (u+1)
-				+ ".txt";
+		String bak_filename = backupDir + "/immortal_" + timestamp_filename
+				+ "_" + (u + 1) + ".txt";
 		try {
 			FileUtils.copyFile(new File(filename), new File(bak_filename));
 		} catch (IOException e) {
@@ -252,14 +251,15 @@ public class ImmortableNumberSearch {
 			u++;
 			a.add(r % 10);
 
+			cnt++;
 			if (cnt % saveInterval == 0) {
 				save(firstSave);
 				firstSave = false;
 			}
-		} while (++cnt != amount);
+		} while (cnt != amount);
 
 		// Wir brauchen nicht zwei Mal zu speichern
-		if (cnt-1 % saveInterval != 0) {
+		if (cnt - 1 % saveInterval != 0) {
 			save(firstSave);
 			firstSave = false;
 		}
