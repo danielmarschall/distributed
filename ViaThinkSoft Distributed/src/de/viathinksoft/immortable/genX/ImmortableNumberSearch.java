@@ -1,7 +1,6 @@
 package de.viathinksoft.immortable.genX;
 
 // TODO: r als BigInteger
-// IDEE: anstelle (u) lieber count einfügen?
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,8 +20,8 @@ import java.util.Vector;
  */
 public class ImmortableNumberSearch {
 
-	private static final String SIGNATURE = "Immortable Number Report File Version 2.0";
-	private static final String SIGNATURE_MINOR = "Iterator GenX Java (backup, selftest, int32) r17";
+	private static final String SIGNATURE = "Immortable Number Report File Version 2.01";
+	private static final String SIGNATURE_MINOR = "Iterator GenX Java (backup, selftest, int32-r) r19";
 	private static final String END_SIG = "END OF REPORT";
 	private static final int SOFTBREAK = 76;
 
@@ -110,9 +109,9 @@ public class ImmortableNumberSearch {
 				f.readLine(); // Timestamp
 				f.readLine(); // ""
 
-				f.readLine(); // "(u)"
+				f.readLine(); // "(Digits)"
 				s = f.readLine();
-				u = Integer.parseInt(s);
+				u = Integer.parseInt(s)-1;
 				f.readLine(); // ""
 
 				f.readLine(); // "(r)"
@@ -177,8 +176,8 @@ public class ImmortableNumberSearch {
 				f.write(timestamp + "\r\n");
 				f.write("\r\n");
 
-				f.write("(u)\r\n");
-				f.write(u + "\r\n");
+				f.write("(Digits)\r\n");
+				f.write((u+1) + "\r\n");
 				f.write("\r\n");
 
 				f.write("(r)\r\n");
