@@ -1,6 +1,7 @@
 package de.viathinksoft.immortable.genX;
 
 // TODO: r als BigInteger
+// IDEE: anstelle (u) lieber count einfügen?
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
