@@ -20,8 +20,8 @@ import java.util.Vector;
  */
 public class ImmortableNumberSearch {
 
-	private static final String SIGNATURE = "Immortable Number Report File Version 2000";
-	private static final String SIGNATURE_MINOR = "Iterator GenX Java int";
+	private static final String SIGNATURE = "Immortable Number Report File Version 2.0";
+	private static final String SIGNATURE_MINOR = "Iterator GenX Java (backup, selftest, int32) r16";
 	private static final String END_SIG = "END OF REPORT";
 	private static final int SOFTBREAK = 76;
 
