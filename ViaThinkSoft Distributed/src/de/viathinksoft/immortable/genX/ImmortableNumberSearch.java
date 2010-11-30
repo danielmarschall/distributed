@@ -12,8 +12,8 @@ import java.math.BigInteger;
 /**
  * Immortable Iterator
  * 
- * @author Daniel Marschall, René Gruber
- * @see http://www.matheboard.de/thread.php?postid=1259938
+ * @author Daniel Marschall, Big thanks to the users of MatheBoard.de
+ * @see http://www.matheboard.de/archive/435725/thread.html
  */
 public class ImmortableNumberSearch {
 
