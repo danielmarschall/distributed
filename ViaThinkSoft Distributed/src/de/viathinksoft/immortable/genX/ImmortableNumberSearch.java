@@ -18,7 +18,7 @@ import java.math.BigInteger;
 public class ImmortableNumberSearch {
 
 	private static final String SIGNATURE = "Immortable Number Report File Version 2.01";
-	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r20";
+	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r22";
 	private static final String END_SIG = "END OF REPORT";
 	private static final int SOFTBREAK = 76;
 
@@ -125,9 +125,10 @@ public class ImmortableNumberSearch {
 					}
 				} while (!s.equals(""));
 
-				if (!integryTest()) {
-					throw new LoadException("Corrupt: Not immortable!");
-				}
+				// Wir prüfen auf Integrität beim nächsten Abspeichern
+				// if (!integryTest()) {
+				// throw new LoadException("Corrupt: Not immortable!");
+				// }
 
 				if (u + 1 != a.count()) {
 					throw new LoadException(
@@ -149,7 +150,8 @@ public class ImmortableNumberSearch {
 	private void save(boolean integrityTest) throws SaveException {
 		if (integrityTest) {
 			if (!integryTest()) {
-				throw new SaveException("Integrity test failed. Will not save.");
+				throw new SaveException(
+						"Integrity test failed. (Loaded file broken?) Will not save.");
 			}
 		}
 
@@ -312,11 +314,11 @@ public class ImmortableNumberSearch {
 		// Ist das auch OK?
 		// return num.pow(2).toString().endsWith(num.toString());
 
-		// n² === n (mod 10^m) <===> n²%10^m == n%10^m
+		// n² === n (mod 10^m) <===> n²%10^m == n%10^m == n
+
 		int m = num.toString().length();
 		BigInteger m_pow = BigInteger.TEN.pow(m);
-		return num.pow(2).mod(m_pow).equals(num.mod(m_pow));
-
+		return num.pow(2).mod(m_pow).equals(num);
 	}
 
 	public boolean integryTest() {
