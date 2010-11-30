@@ -4,5 +4,25 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-audio.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-awt.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-collada.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-editors.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-effects.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-font.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-gamestates.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-model.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-ogrexml.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-scene.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-swt.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme-terrain.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/jme.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/lib/lwjgl/lwjgl_util_applet.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/lib/lwjgl/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="lib/jME2_0_1-Stable/lib/lib/lwjgl/lwjgl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="ViaThinkSoft Distributed/lib/jME2_0_1-Stable/lib/lib/lwjgl/native/windows"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
