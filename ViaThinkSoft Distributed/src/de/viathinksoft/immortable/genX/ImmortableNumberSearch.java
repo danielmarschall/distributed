@@ -1,7 +1,5 @@
 package de.viathinksoft.immortable.genX;
 
-// TODO: r als BigInteger
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,7 +8,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
-import java.util.Vector;
 
 /**
  * Immortable Iterator
@@ -21,19 +18,20 @@ import java.util.Vector;
 public class ImmortableNumberSearch {
 
 	private static final String SIGNATURE = "Immortable Number Report File Version 2.01";
-	private static final String SIGNATURE_MINOR = "Iterator GenX Java (backup, selftest, int32-r) r19";
+	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r20";
 	private static final String END_SIG = "END OF REPORT";
 	private static final int SOFTBREAK = 76;
 
-	private Vector<Integer> a = null;
+	private ByteArray a;
 	private String filename;
-	private int saveInterval = 10000;
+	private int saveInterval = 100000;
 	private int u = -1;
-	private int r = -1;
+	private int r = -1; // FUTURE: r als BigInteger
 	private String creation_time;
 	private String backupDir = "backup";
 
 	public ImmortableNumberSearch(String filename) throws LoadException {
+		this.a = new ByteArray(1000000, 1000000);
 		this.filename = filename;
 		load();
 	}
@@ -50,7 +48,7 @@ public class ImmortableNumberSearch {
 		return this.saveInterval;
 	}
 
-	public Vector<Integer> getA() {
+	public ByteArray getA() {
 		return a;
 	}
 
@@ -87,7 +85,7 @@ public class ImmortableNumberSearch {
 			return;
 		}
 
-		a = null;
+		a.clear();
 		u = -1;
 		r = -1;
 
@@ -111,7 +109,7 @@ public class ImmortableNumberSearch {
 
 				f.readLine(); // "(Digits)"
 				s = f.readLine();
-				u = Integer.parseInt(s)-1;
+				u = Integer.parseInt(s) - 1;
 				f.readLine(); // ""
 
 				f.readLine(); // "(r)"
@@ -120,11 +118,10 @@ public class ImmortableNumberSearch {
 				f.readLine(); // ""
 
 				f.readLine(); // "(M5rev)"
-				a = new Vector<Integer>();
 				do {
 					s = f.readLine();
 					for (int i = 0; i < s.length(); i++) {
-						a.add(new Integer(s.substring(i, i + 1)));
+						a.add(Byte.parseByte(s.substring(i, i + 1)));
 					}
 				} while (!s.equals(""));
 
@@ -132,7 +129,7 @@ public class ImmortableNumberSearch {
 					throw new LoadException("Corrupt: Not immortable!");
 				}
 
-				if (u + 1 != a.size()) {
+				if (u + 1 != a.count()) {
 					throw new LoadException(
 							"Corrupt: Formal and actual length mismatch!");
 				}
@@ -177,7 +174,7 @@ public class ImmortableNumberSearch {
 				f.write("\r\n");
 
 				f.write("(Digits)\r\n");
-				f.write((u+1) + "\r\n");
+				f.write((u + 1) + "\r\n");
 				f.write("\r\n");
 
 				f.write("(r)\r\n");
@@ -185,14 +182,15 @@ public class ImmortableNumberSearch {
 				f.write("\r\n");
 
 				f.write("(M5rev)\r\n");
-				int i = 0;
-				for (Integer xa : a) {
-					f.write(xa.toString());
-					if (++i % SOFTBREAK == 0) {
+				int i;
+				for (i = 0; i < a.count(); i++) {
+					byte xa = a.get(i);
+					f.write("" + xa);
+					if (i + 1 % SOFTBREAK == 0) {
 						f.write("\r\n");
 					}
 				}
-				if (++i % SOFTBREAK != 0) {
+				if (i + 1 % SOFTBREAK != 0) {
 					f.write("\r\n");
 				}
 				f.write("\r\n");
@@ -228,28 +226,27 @@ public class ImmortableNumberSearch {
 		// nicht immortabel).
 		boolean firstSave = true;
 
-		if (a == null) {
+		if (a.isEmpty()) {
 			creation_time = DateUtils.now("EEE, d MMM yyyy HH:mm:ss Z");
-			a = new Vector<Integer>();
-			a.add(5);
-			a.add(2);
+			a.add((byte) 5);
+			a.add((byte) 2);
 			u = 1;
 			r = 2;
 			cnt += 2;
 		}
 
 		do {
-			r = (r - a.elementAt(u)) / 10 + a.elementAt(u);
+			r = (r - a.get(u)) / 10 + a.get(u);
 			s = 0;
 			for (m = 1, k = u; m < k; m++, k--) {
-				s += a.elementAt(m) * a.elementAt(k);
+				s += a.get(m) * a.get(k);
 			}
 			r += 2 * s;
 			if (m == k) {
-				r += a.elementAt(m) * a.elementAt(m);
+				r += a.get(m) * a.get(m);
 			}
 			u++;
-			a.add(r % 10);
+			a.add((byte) (r % 10));
 
 			cnt++;
 			if (cnt % saveInterval == 0) {
@@ -265,14 +262,15 @@ public class ImmortableNumberSearch {
 		}
 	}
 
-	public int getDigit(int u) {
-		return a.elementAt(u);
+	public byte getDigitReverse(int u) {
+		return a.get(u);
 	}
 
 	public StringBuilder M5_StringBuilder(int u) {
 		StringBuilder s = new StringBuilder();
-		for (Integer xa : a) {
-			s.append(xa);
+		for (int i = 0; i < a.count(); i++) {
+			byte xa = a.get(i);
+			s.append("" + xa);
 		}
 		s.reverse();
 		return s;
@@ -289,12 +287,13 @@ public class ImmortableNumberSearch {
 	public StringBuilder M6_StringBuilder(int u) {
 		StringBuilder s = new StringBuilder();
 		boolean first = true;
-		for (Integer xa : a) {
+		for (int i = 0; i < a.count(); i++) {
+			byte xa = a.get(i);
 			if (first) {
 				s.append(6); // xa = 5
 				first = false;
 			} else {
-				s.append(9 - xa);
+				s.append("" + (9 - xa));
 			}
 		}
 		s.reverse();
