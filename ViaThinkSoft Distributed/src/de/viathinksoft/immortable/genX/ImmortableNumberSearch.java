@@ -18,7 +18,7 @@ import java.math.BigInteger;
 public class ImmortableNumberSearch {
 
 	private static final String SIGNATURE = "Immortable Number Report File Version 2.01";
-	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r28";
+	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r29";
 	private static final String END_SIG = "END OF REPORT";
 	private static final int SOFTBREAK = 76;
 
@@ -32,6 +32,33 @@ public class ImmortableNumberSearch {
 
 	private static final int INITIAL_SIZE = 1000000;
 	private static final int EXPANSION_SIZE = 1000000;
+
+	private boolean do_integrity_test = false;
+	private boolean verbose = false;
+
+	public boolean isDo_integrity_test() {
+		return do_integrity_test;
+	}
+
+	public void setDo_integrity_test(boolean doIntegrityTest) {
+		do_integrity_test = doIntegrityTest;
+	}
+
+	public boolean isVerbose() {
+		return verbose;
+	}
+
+	public void setVerbose(boolean verbose) {
+		this.verbose = verbose;
+	}
+
+	protected void log(String s) {
+		if (verbose) {
+			String timestamp = DateUtils.now("EEE, d MMM yyyy HH:mm:ss Z");
+			System.out.println(timestamp + " - " + s); // FURUE: In eine
+														// Log-Datei schreiben
+		}
+	}
 
 	public ImmortableNumberSearch(String filename) throws LoadException {
 		this.filename = filename;
@@ -88,7 +115,6 @@ public class ImmortableNumberSearch {
 			return;
 		}
 
-		a.clear();
 		u = -1;
 		r = -1;
 
@@ -96,7 +122,7 @@ public class ImmortableNumberSearch {
 			try {
 				String s = f.readLine();
 				if (!s.equals(SIGNATURE)) {
-					throw new LoadException("Wrong signature");
+					throw new LoadException("Corrupt: Wrong signature");
 				}
 
 				f.readLine(); // Minor. signature
@@ -148,14 +174,16 @@ public class ImmortableNumberSearch {
 	}
 
 	private void save(boolean integrityTest) throws SaveException {
-		if (integrityTest) {
-			System.out.println("Beginne Selbsttest vor erster Speicherung...");
+		if ((integrityTest) && (do_integrity_test)) {
+			log("Beginne Selbsttest vor erster Speicherung...");
 
 			if (!integryTest()) {
 				throw new SaveException(
 						"Integrity test failed. (Loaded file broken?) Will not save.");
 			}
 		}
+
+		log("Speichere bei u=" + (u + 1));
 
 		String timestamp = DateUtils.now("EEE, d MMM yyyy HH:mm:ss Z");
 		String timestamp_filename = DateUtils.now("dd-MM-yyyy_HH-mm-ss");
@@ -218,14 +246,14 @@ public class ImmortableNumberSearch {
 			throw new SaveException("Could not make backup", e);
 		}
 
-		if (integrityTest) {
-			System.out
-					.println("Erste Speicherung absolviert. Stabile Phase hat begonnen.");
+		if ((integrityTest) && (do_integrity_test)) {
+			log("Erste Speicherung absolviert. Stabile Phase hat begonnen.");
 		}
 	}
 
 	public void calcIterate(int amount) throws SaveException {
-		int s, m, k;
+		log("Beginn der Rechenarbeit...");
+
 		int cnt = 0;
 
 		// Wir führen beim ersten Speichern einen weiteren
@@ -244,8 +272,10 @@ public class ImmortableNumberSearch {
 			cnt += 2;
 		}
 
+		int s, m, k;
+
 		do {
-			r = (r - a.get(u)) / 10 + a.get(u);
+			r = (r /* - a.get(u) */) / 10 + a.get(u);
 			s = 0;
 			for (m = 1, k = u; m < k; m++, k--) {
 				s += a.get(m) * a.get(k);
@@ -266,9 +296,12 @@ public class ImmortableNumberSearch {
 
 		// Wir brauchen nicht zwei Mal zu speichern
 		if (cnt - 1 % saveInterval != 0) {
+			log("Letzte Speicherung vor Ende...");
 			save(firstSave);
-			firstSave = false;
+			// firstSave = false;
 		}
+
+		log("Ende der Rechenarbeit...");
 	}
 
 	public byte getDigitReverse(int u) {
