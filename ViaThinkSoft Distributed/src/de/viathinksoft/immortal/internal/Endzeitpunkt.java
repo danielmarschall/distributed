@@ -13,9 +13,21 @@ public class Endzeitpunkt {
 	// private static final BigInteger ABFALL_MEDIAN = new BigInteger("199");
 
 	// Der neue Algorithmus (r20)
-	private static final int ABSCHNITT_STEP = 29;
-	private static final BigInteger ABSCHNITT_BEGINN = new BigInteger("94923");
-	private static final BigInteger ABFALL_MEDIAN = new BigInteger("30");
+	// private static final int ABSCHNITT_STEP = 29;
+	// private static final BigInteger ABSCHNITT_BEGINN = new
+	// BigInteger("94923");
+	// private static final BigInteger ABFALL_MEDIAN = new BigInteger("30");
+
+	// Das erste C-Programm (c 1.0)
+	// private static final int ABSCHNITT_STEP = 76;
+	// private static final BigInteger ABSCHNITT_BEGINN = new
+	// BigInteger("215715");
+	// private static final BigInteger ABFALL_MEDIAN = new BigInteger("43");
+
+	// Das erste C-Programm mit Optimierung (c 1.2)
+	private static final int ABSCHNITT_STEP = 83;
+	private static final BigInteger ABSCHNITT_BEGINN = new BigInteger("230516");
+	private static final BigInteger ABFALL_MEDIAN = new BigInteger("11");
 
 	private static BigInteger f(int u) {
 		BigInteger res = ABSCHNITT_BEGINN;
