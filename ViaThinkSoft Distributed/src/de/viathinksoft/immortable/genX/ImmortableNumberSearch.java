@@ -18,7 +18,7 @@ import java.math.BigInteger;
 public class ImmortableNumberSearch {
 
 	private static final String SIGNATURE = "Immortable Number Report File Version 2.01";
-	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r25";
+	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r28";
 	private static final String END_SIG = "END OF REPORT";
 	private static final int SOFTBREAK = 76;
 
