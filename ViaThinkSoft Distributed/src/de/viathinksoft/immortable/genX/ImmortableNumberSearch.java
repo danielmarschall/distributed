@@ -18,7 +18,7 @@ import java.math.BigInteger;
 public class ImmortableNumberSearch {
 
 	private static final String SIGNATURE = "Immortable Number Report File Version 2.01";
-	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r24";
+	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r25";
 	private static final String END_SIG = "END OF REPORT";
 	private static final int SOFTBREAK = 76;
 
@@ -30,8 +30,10 @@ public class ImmortableNumberSearch {
 	private String creation_time;
 	private String backupDir = "backup";
 
+	private static final int INITIAL_SIZE = 1000000;
+	private static final int EXPANSION_SIZE = 1000000;
+
 	public ImmortableNumberSearch(String filename) throws LoadException {
-		this.a = new ByteArray(1000000, 1000000);
 		this.filename = filename;
 		load();
 	}
@@ -74,6 +76,7 @@ public class ImmortableNumberSearch {
 
 	private void load() throws LoadException {
 		if (!savePointExists()) {
+			this.a = new ByteArray(INITIAL_SIZE, EXPANSION_SIZE);
 			return;
 		}
 
@@ -116,6 +119,8 @@ public class ImmortableNumberSearch {
 				s = f.readLine();
 				r = Integer.parseInt(s); // FUTURE: (1) Multi-Line-Support?
 				f.readLine(); // ""
+
+				this.a = new ByteArray(u + 1 + EXPANSION_SIZE, EXPANSION_SIZE);
 
 				f.readLine(); // "(M5 reversed)"
 				do {
