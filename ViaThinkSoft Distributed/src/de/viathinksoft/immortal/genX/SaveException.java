@@ -1,6 +1,6 @@
 package de.viathinksoft.immortal.genX;
 
-public class SaveException extends ImmortableException {
+public class SaveException extends ImmortalException {
 
 	private static final long serialVersionUID = 6676069625825930604L;
 

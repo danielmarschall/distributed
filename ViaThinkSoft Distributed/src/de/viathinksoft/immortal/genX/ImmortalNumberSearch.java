@@ -15,7 +15,7 @@ import java.math.BigInteger;
  * @author Daniel Marschall, Big thanks to the users of MatheBoard.de
  * @see http://www.matheboard.de/archive/435725/thread.html
  */
-public class ImmortableNumberSearch {
+public class ImmortalNumberSearch {
 
 	private static final String SIGNATURE = "Immortal Number Report File Version 2.02";
 	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r29";
@@ -60,7 +60,7 @@ public class ImmortableNumberSearch {
 		}
 	}
 
-	public ImmortableNumberSearch(String filename) throws LoadException {
+	public ImmortalNumberSearch(String filename) throws LoadException {
 		this.filename = filename;
 		load();
 	}

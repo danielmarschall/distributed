@@ -13,7 +13,7 @@ public class Raumplan {
 	private static final int Abbruch_Size = 5;
 	private static final float Size_Faktor = 0.5f;
 	private static final float Abstand_Initial = 0.5f;
-	private static final float Abstand_Faktor = 0.5f;
+	// private static final float Abstand_Faktor = 0.5f;
 	
 	public Raumplan(Node rootNode, float size, float x, float y, float z, LockDirectoryEnum e) {
 		this.centerbox = new Box("Center-Box", new Vector3f(x, y, z), new Vector3f(size, size, size));

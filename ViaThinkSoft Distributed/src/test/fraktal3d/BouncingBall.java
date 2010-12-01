@@ -1,7 +1,6 @@
 package test.fraktal3d;
 import com.jme.app.SimpleGame;
 import com.jme.math.Vector3f;
-import com.jme.scene.Node;
 
 public class BouncingBall extends SimpleGame {
 
