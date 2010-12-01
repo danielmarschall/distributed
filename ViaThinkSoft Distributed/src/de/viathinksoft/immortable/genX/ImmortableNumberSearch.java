@@ -18,7 +18,7 @@ import java.math.BigInteger;
 public class ImmortableNumberSearch {
 
 	private static final String SIGNATURE = "Immortable Number Report File Version 2.01";
-	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r22";
+	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r24";
 	private static final String END_SIG = "END OF REPORT";
 	private static final int SOFTBREAK = 76;
 
@@ -117,18 +117,13 @@ public class ImmortableNumberSearch {
 				r = Integer.parseInt(s); // FUTURE: (1) Multi-Line-Support?
 				f.readLine(); // ""
 
-				f.readLine(); // "(M5rev)"
+				f.readLine(); // "(M5 reversed)"
 				do {
 					s = f.readLine();
 					for (int i = 0; i < s.length(); i++) {
 						a.add(Byte.parseByte(s.substring(i, i + 1)));
 					}
 				} while (!s.equals(""));
-
-				// Wir prüfen auf Integrität beim nächsten Abspeichern
-				// if (!integryTest()) {
-				// throw new LoadException("Corrupt: Not immortable!");
-				// }
 
 				if (u + 1 != a.count()) {
 					throw new LoadException(
@@ -149,6 +144,8 @@ public class ImmortableNumberSearch {
 
 	private void save(boolean integrityTest) throws SaveException {
 		if (integrityTest) {
+			System.out.println("Beginne Selbsttest vor erster Speicherung...");
+
 			if (!integryTest()) {
 				throw new SaveException(
 						"Integrity test failed. (Loaded file broken?) Will not save.");
@@ -183,16 +180,16 @@ public class ImmortableNumberSearch {
 				f.write(r + "\r\n"); // FUTURE: (1) Multi-Line-Support?
 				f.write("\r\n");
 
-				f.write("(M5rev)\r\n");
+				f.write("(M5 reversed)\r\n");
 				int i;
 				for (i = 0; i < a.count(); i++) {
 					byte xa = a.get(i);
 					f.write("" + xa);
-					if (i + 1 % SOFTBREAK == 0) {
+					if ((i + 1) % SOFTBREAK == 0) {
 						f.write("\r\n");
 					}
 				}
-				if (i + 1 % SOFTBREAK != 0) {
+				if ((i + 1) % SOFTBREAK != 0) {
 					f.write("\r\n");
 				}
 				f.write("\r\n");
@@ -214,6 +211,11 @@ public class ImmortableNumberSearch {
 			FileUtils.copyFile(new File(filename), new File(bak_filename));
 		} catch (IOException e) {
 			throw new SaveException("Could not make backup", e);
+		}
+
+		if (integrityTest) {
+			System.out
+					.println("Erste Speicherung absolviert. Stabile Phase hat begonnen.");
 		}
 	}
 
@@ -288,14 +290,12 @@ public class ImmortableNumberSearch {
 
 	public StringBuilder M6_StringBuilder(int u) {
 		StringBuilder s = new StringBuilder();
-		boolean first = true;
 		for (int i = 0; i < a.count(); i++) {
 			byte xa = a.get(i);
-			if (first) {
-				s.append(6); // xa = 5
-				first = false;
-			} else {
+			if (i > 0) {
 				s.append("" + (9 - xa));
+			} else {
+				s.append("" + (11 - xa));
 			}
 		}
 		s.reverse();
@@ -310,19 +310,23 @@ public class ImmortableNumberSearch {
 		return new BigInteger(M6_String(u));
 	}
 
-	private static boolean isImmortable(BigInteger num) {
-		// Ist das auch OK?
+	protected static boolean isImmortable(BigInteger num, int m) {
+		// Alternativ
 		// return num.pow(2).toString().endsWith(num.toString());
 
 		// n² === n (mod 10^m) <===> n²%10^m == n%10^m == n
 
-		int m = num.toString().length();
 		BigInteger m_pow = BigInteger.TEN.pow(m);
 		return num.pow(2).mod(m_pow).equals(num);
 	}
 
+	protected static boolean isImmortable(BigInteger num) {
+		int m = num.toString().length();
+		return isImmortable(num, m);
+	}
+
 	public boolean integryTest() {
-		// return isImmortable(M5_BigInteger(u));
-		return isImmortable(M6_BigInteger(u));
+		// return isImmortable(M5_BigInteger(u), a.count());
+		return isImmortable(M6_BigInteger(u), a.count());
 	}
 }
