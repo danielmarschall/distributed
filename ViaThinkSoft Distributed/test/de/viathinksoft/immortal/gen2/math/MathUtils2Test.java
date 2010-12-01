@@ -1,4 +1,4 @@
-package de.viathinksoft.immortable.gen2.math;
+package de.viathinksoft.immortal.gen2.math;
 
 import static org.junit.Assert.*;
 
@@ -6,9 +6,9 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
-import de.viathinksoft.immortable.gen2.math.CRTNotSolveableException;
-import de.viathinksoft.immortable.gen2.math.MathUtils2;
-import de.viathinksoft.immortable.gen2.math.RemainderNotSmallerThanModulusException;
+import de.viathinksoft.immortal.gen2.math.CRTNotSolveableException;
+import de.viathinksoft.immortal.gen2.math.MathUtils2;
+import de.viathinksoft.immortal.gen2.math.RemainderNotSmallerThanModulusException;
 
 public class MathUtils2Test {
 	
