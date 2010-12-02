@@ -33,8 +33,8 @@ public class ImmortalNumberSearch {
 	private static final int INITIAL_SIZE = 1000000;
 	private static final int EXPANSION_SIZE = 1000000;
 
-	private boolean do_integrity_test = false;
-	private boolean verbose = false;
+	private boolean do_integrity_test = true;
+	private boolean verbose = true;
 
 	public boolean isDo_integrity_test() {
 		return do_integrity_test;
@@ -55,8 +55,8 @@ public class ImmortalNumberSearch {
 	protected void log(String s) {
 		if (verbose) {
 			String timestamp = DateUtils.now("EEE, d MMM yyyy HH:mm:ss Z");
-			System.out.println(timestamp + " - " + s); // FURUE: In eine
-														// Log-Datei schreiben
+			// FUTURE: In eine Log-Datei schreiben
+			System.out.println(timestamp + " - " + s);
 		}
 	}
 
@@ -183,7 +183,7 @@ public class ImmortalNumberSearch {
 			}
 		}
 
-		log("Speichere bei u=" + (u + 1));
+		log("Speichere bei " + (u + 1) + " digits");
 
 		String timestamp = DateUtils.now("EEE, d MMM yyyy HH:mm:ss Z");
 		String timestamp_filename = DateUtils.now("dd-MM-yyyy_HH-mm-ss");
@@ -228,6 +228,7 @@ public class ImmortalNumberSearch {
 				f.write("\r\n");
 
 				f.write(END_SIG);
+				f.write("\r\n");
 			} finally {
 				f.close();
 			}
