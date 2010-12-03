@@ -18,7 +18,7 @@ import java.math.BigInteger;
 public class ImmortalNumberSearch {
 
 	private static final String SIGNATURE = "Immortal Number Report File Version 2.02";
-	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r29";
+	private static final String SIGNATURE_MINOR = "Iterator GenX Java (100k save-interval, load-integrity-check, int32-r, array-object) r38";
 	private static final String END_SIG = "END OF REPORT";
 	private static final int SOFTBREAK = 76;
 
@@ -222,7 +222,7 @@ public class ImmortalNumberSearch {
 						f.write("\r\n");
 					}
 				}
-				if ((i + 1) % SOFTBREAK != 0) {
+				if (i % SOFTBREAK != 0) { /* nicht +1, da i++ am Ende */
 					f.write("\r\n");
 				}
 				f.write("\r\n");
