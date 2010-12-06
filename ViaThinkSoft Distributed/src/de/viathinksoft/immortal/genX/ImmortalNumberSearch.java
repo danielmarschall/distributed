@@ -356,7 +356,10 @@ public class ImmortalNumberSearch {
 		// n² === n (mod 10^m) <===> n²%10^m == n%10^m == n
 
 		BigInteger m_pow = BigInteger.TEN.pow(m);
-		return num.pow(2).mod(m_pow).equals(num);
+		
+		//return num.pow(2).mod(m_pow).equals(num);
+		
+		return num.modPow(BigInteger.valueOf(2), m_pow).equals(num);
 	}
 
 	protected static boolean isImmortable(BigInteger num) {
