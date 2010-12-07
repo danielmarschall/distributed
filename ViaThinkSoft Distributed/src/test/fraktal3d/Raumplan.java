@@ -1,4 +1,6 @@
 package test.fraktal3d;
+import java.awt.Color;
+
 import com.jme.math.Vector3f;
 import com.jme.renderer.ColorRGBA;
 import com.jme.scene.Node;
@@ -8,39 +10,62 @@ import com.jme.scene.state.MaterialState;
 import com.jme.system.DisplaySystem;
 
 public class Raumplan {
-	private Box centerbox;
+	protected Box centerbox;
 	
-	private static final int Abbruch_Size = 5;
 	private static final float Size_Faktor = 0.5f;
-	private static final float Abstand_Initial = 0.5f;
-	// private static final float Abstand_Faktor = 0.5f;
+	private static final float Abstand_Faktor = 0.5f;
+	private static final float Max_Iter = 6; // Ab 7 wird's eklig!
 	
-	public Raumplan(Node rootNode, float size, float x, float y, float z, LockDirectoryEnum e) {
-		this.centerbox = new Box("Center-Box", new Vector3f(x, y, z), new Vector3f(size, size, size));
+	public Raumplan(Node rootNode, float size, float abstand, float x, float y, float z, LockDirectoryEnum e, int iter) {
+		if (iter > Max_Iter) return;
+		
+		Box centerbox = new Box("Center-Box", new Vector3f(x, y, z), size, size, size);
+		
+		Node rn = getRoomNode(centerbox, iter);
+		rootNode.attachChild(rn);
+		
+		// WIESO geht es nur mit abstand??? Es sollte abstand*1 sein!
+		float abstand2 = 0.5f*size + abstand + 0.5f*size*Size_Faktor;
+//		System.out.println(iter);
+//		System.out.println(size);
+//		System.out.println((0.5f*size) + " + " + abstand + " + " + ( 0.5f*size*Size_Faktor));
+//		
+//		System.out.println(x-abstand2);
+		
+		if (e != LockDirectoryEnum.LOCK_X_NEG)
+			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x-abstand2, y, z, LockDirectoryEnum.LOCK_X_POS, iter+1);
+		if (e != LockDirectoryEnum.LOCK_X_POS)
+			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x+abstand2, y, z, LockDirectoryEnum.LOCK_X_NEG, iter+1);
+		if (e != LockDirectoryEnum.LOCK_Y_NEG)
+			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y-abstand2, z, LockDirectoryEnum.LOCK_Y_POS, iter+1);
+		if (e != LockDirectoryEnum.LOCK_Y_POS)
+			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y+abstand2, z, LockDirectoryEnum.LOCK_Y_NEG, iter+1);
+		if (e != LockDirectoryEnum.LOCK_Z_NEG)
+			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y, z-abstand2, LockDirectoryEnum.LOCK_Z_POS, iter+1);
+		if (e != LockDirectoryEnum.LOCK_Z_POS)
+			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y, z+abstand2, LockDirectoryEnum.LOCK_Z_NEG, iter+1);
 	}
 	
-	public void los(Node rootNode, float size, float x, float y, float z, LockDirectoryEnum e) {
-		if (size > Abbruch_Size) {		
-			new Raumplan(getRoomNode(), size, x-Abstand_Initial, y-Abstand_Initial, z-Abstand_Initial, LockDirectoryEnum.LOCK_X_POS).los(this.getRoomNode(), size*Size_Faktor, x-Abstand_Initial, y-Abstand_Initial, z-Abstand_Initial, LockDirectoryEnum.LOCK_X_POS);
-		}		
-
-		rootNode.attachChild(getRoomNode());
-	}
-
-	protected Node getRoomNode() {
-		Node roomNode = new Node();
+	protected static Node getRoomNode(Box centerbox, int iter) {
+		Node roomNode = new Node(); // Unnötiges Zwischennode?
 		
 		float opacityAmount = 1.0f;
 		DisplaySystem display = DisplaySystem.getDisplaySystem();
 		
 		MaterialState materialState = display.getRenderer()
 		.createMaterialState();
-		
-        // the sphere material taht will be modified to make the sphere
+
+        // the sphere material that will be modified to make the sphere
         // look opaque then transparent then opaque and so on
         materialState = display.getRenderer().createMaterialState();
         materialState.setAmbient(new ColorRGBA(0.0f, 0.0f, 0.0f, opacityAmount));
-        materialState.setDiffuse(new ColorRGBA(0.1f, 0.5f, 0.8f, opacityAmount));
+        
+        Color x = ColorUtilities.HSLtoRGB(1.0f/iter, 1.0f, 0.5f);
+        float r = (float)x.getRed()/255;
+        float g = (float)x.getGreen()/255;
+        float b = (float)x.getBlue()/255;
+        
+        materialState.setDiffuse(new ColorRGBA(r, g, b, opacityAmount)); // TODO
         materialState.setSpecular(new ColorRGBA(1.0f, 1.0f, 1.0f, opacityAmount));
         materialState.setShininess(128.0f);
         materialState.setEmissive(new ColorRGBA(0.0f, 0.0f, 0.0f, opacityAmount));
@@ -53,9 +78,7 @@ public class Raumplan {
  
         centerbox.setRenderState(materialState);
         centerbox.updateRenderState();
- 
-        roomNode.attachChild(centerbox);
- 
+
         // to handle transparency: a BlendState
         // an other tutorial will be made to deal with the possibilities of this
         // RenderState
@@ -70,6 +93,7 @@ public class Raumplan {
         centerbox.setRenderState(alphaState);
         centerbox.updateRenderState();
 		
+        roomNode.attachChild(centerbox);
         return roomNode;
 	}
 

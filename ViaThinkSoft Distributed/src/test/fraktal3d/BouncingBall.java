@@ -6,14 +6,8 @@ public class BouncingBall extends SimpleGame {
 
 	@Override
 	protected void simpleInitGame() {
-		// Scene einstellen
-		// Kamaraentfernung erhöhen
 		cam.setLocation(new Vector3f(0, 50, 150));
-
-		// Elemente an rootNode anhängen
-		new Raumplan(rootNode, 25, 0, 0, 0, LockDirectoryEnum.LOCK_NOTHING).los(rootNode, 25, 0, 0, 0, LockDirectoryEnum.LOCK_NOTHING);
-		
-//		rootNode.attachChild(new Raumplan(new Node(), 25, 0, 0, 0, LockDirectoryEnum.LOCK_NOTHING).getRoomNode());
+		new Raumplan(rootNode, 50, 25, 0, 0, 0, LockDirectoryEnum.LOCK_NOTHING, 1);
 	}
 
 	/**
@@ -21,7 +15,7 @@ public class BouncingBall extends SimpleGame {
 	 */
 	public static void main(String[] args) {
 		BouncingBall ball = new BouncingBall();
-		ball.setConfigShowMode(ConfigShowMode.AlwaysShow);
+		ball.setConfigShowMode(ConfigShowMode.ShowIfNoConfig);
 		ball.start();
 	}
 }
