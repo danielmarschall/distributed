@@ -1,4 +1,4 @@
-package test.fraktal3d;
+package de.viathinksoft.marschall.raumplan.fraktal3d;
 
 public enum LockDirectoryEnum {
 	

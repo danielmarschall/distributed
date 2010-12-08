@@ -1,4 +1,4 @@
-package test.fraktal3d;
+package de.viathinksoft.marschall.raumplan.fraktal3d;
 import java.awt.Color;
 
 import com.jme.math.Vector3f;
@@ -9,14 +9,14 @@ import com.jme.scene.state.BlendState;
 import com.jme.scene.state.MaterialState;
 import com.jme.system.DisplaySystem;
 
-public class Raumplan {
+public class Kubus {
 	protected Box centerbox;
 	
 	private static final float Size_Faktor = 0.5f;
 	private static final float Abstand_Faktor = 0.5f;
 	private static final float Max_Iter = 6; // Ab 7 wird's eklig!
 	
-	public Raumplan(Node rootNode, float size, float abstand, float x, float y, float z, LockDirectoryEnum e, int iter) {
+	public Kubus(Node rootNode, float size, float abstand, float x, float y, float z, LockDirectoryEnum e, int iter) {
 		if (iter > Max_Iter) return;
 		
 		Box centerbox = new Box("Center-Box", new Vector3f(x, y, z), size, size, size);
@@ -33,17 +33,17 @@ public class Raumplan {
 //		System.out.println(x-abstand2);
 		
 		if (e != LockDirectoryEnum.LOCK_X_NEG)
-			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x-abstand2, y, z, LockDirectoryEnum.LOCK_X_POS, iter+1);
+			new Kubus(rn, size*Size_Faktor, abstand*Abstand_Faktor, x-abstand2, y, z, LockDirectoryEnum.LOCK_X_POS, iter+1);
 		if (e != LockDirectoryEnum.LOCK_X_POS)
-			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x+abstand2, y, z, LockDirectoryEnum.LOCK_X_NEG, iter+1);
+			new Kubus(rn, size*Size_Faktor, abstand*Abstand_Faktor, x+abstand2, y, z, LockDirectoryEnum.LOCK_X_NEG, iter+1);
 		if (e != LockDirectoryEnum.LOCK_Y_NEG)
-			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y-abstand2, z, LockDirectoryEnum.LOCK_Y_POS, iter+1);
+			new Kubus(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y-abstand2, z, LockDirectoryEnum.LOCK_Y_POS, iter+1);
 		if (e != LockDirectoryEnum.LOCK_Y_POS)
-			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y+abstand2, z, LockDirectoryEnum.LOCK_Y_NEG, iter+1);
+			new Kubus(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y+abstand2, z, LockDirectoryEnum.LOCK_Y_NEG, iter+1);
 		if (e != LockDirectoryEnum.LOCK_Z_NEG)
-			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y, z-abstand2, LockDirectoryEnum.LOCK_Z_POS, iter+1);
+			new Kubus(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y, z-abstand2, LockDirectoryEnum.LOCK_Z_POS, iter+1);
 		if (e != LockDirectoryEnum.LOCK_Z_POS)
-			new Raumplan(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y, z+abstand2, LockDirectoryEnum.LOCK_Z_NEG, iter+1);
+			new Kubus(rn, size*Size_Faktor, abstand*Abstand_Faktor, x, y, z+abstand2, LockDirectoryEnum.LOCK_Z_NEG, iter+1);
 	}
 	
 	protected static Node getRoomNode(Box centerbox, int iter) {

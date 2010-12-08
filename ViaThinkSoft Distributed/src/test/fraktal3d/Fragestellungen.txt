@@ -1,5 +1,0 @@
-Erkenntnis
-- Es entsteht KEIN Würfel
-
-Frage:
-- Kann durch die 3D-Erweiterung eine Kollision (z.B. Kinder kollidieren mit Mutterkubus) entstehen?

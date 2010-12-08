@@ -1,4 +1,4 @@
-package test.fraktal3d;
+package de.viathinksoft.marschall.raumplan.fraktal3d;
 
 /*
  * $Id: ColorUtilities.java 1496 2006-10-22 03:26:24Z gfx $
