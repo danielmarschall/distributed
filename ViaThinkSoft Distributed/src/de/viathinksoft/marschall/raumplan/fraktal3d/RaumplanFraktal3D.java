@@ -15,7 +15,7 @@ public class RaumplanFraktal3D extends SimpleGame {
 	 */
 	public static void main(String[] args) {
 		RaumplanFraktal3D ball = new RaumplanFraktal3D();
-		ball.setConfigShowMode(ConfigShowMode.ShowIfNoConfig);
+		ball.setConfigShowMode(ConfigShowMode.AlwaysShow);
 		ball.start();
 	}
 }

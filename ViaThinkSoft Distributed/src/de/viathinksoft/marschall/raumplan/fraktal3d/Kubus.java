@@ -14,23 +14,17 @@ public class Kubus {
 	
 	private static final float Size_Faktor = 0.5f;
 	private static final float Abstand_Faktor = 0.5f;
-	private static final float Max_Iter = 6; // Ab 7 wird's eklig!
+	private static final float Max_Iter = 5; // Ab 7 wird's eklig!
 	
 	public Kubus(Node rootNode, float size, float abstand, float x, float y, float z, LockDirectoryEnum e, int iter) {
 		if (iter > Max_Iter) return;
 		
-		Box centerbox = new Box("Center-Box", new Vector3f(x, y, z), size, size, size);
+		Box centerbox = new Box("Center-Box", new Vector3f(x-size/2, y-size/2, z-size/2), new Vector3f(x+size/2, y+size/2, z+size/2));
 		
 		Node rn = getRoomNode(centerbox, iter);
 		rootNode.attachChild(rn);
 		
-		// WIESO geht es nur mit abstand??? Es sollte abstand*1 sein!
 		float abstand2 = 0.5f*size + abstand + 0.5f*size*Size_Faktor;
-//		System.out.println(iter);
-//		System.out.println(size);
-//		System.out.println((0.5f*size) + " + " + abstand + " + " + ( 0.5f*size*Size_Faktor));
-//		
-//		System.out.println(x-abstand2);
 		
 		if (e != LockDirectoryEnum.LOCK_X_NEG)
 			new Kubus(rn, size*Size_Faktor, abstand*Abstand_Faktor, x-abstand2, y, z, LockDirectoryEnum.LOCK_X_POS, iter+1);
@@ -65,7 +59,7 @@ public class Kubus {
         float g = (float)x.getGreen()/255;
         float b = (float)x.getBlue()/255;
         
-        materialState.setDiffuse(new ColorRGBA(r, g, b, opacityAmount)); // TODO
+        materialState.setDiffuse(new ColorRGBA(r, g, b, opacityAmount));
         materialState.setSpecular(new ColorRGBA(1.0f, 1.0f, 1.0f, opacityAmount));
         materialState.setShininess(128.0f);
         materialState.setEmissive(new ColorRGBA(0.0f, 0.0f, 0.0f, opacityAmount));
